@@ -1,18 +1,15 @@
-import React from "react";
-
-import Head from "next/head";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import React from "react"
+import Head from "next/head"
 
 export default function Front() {
   return (
     <>
       <Head>
-        <title>Front page of the news application</title>
+        <title>Front page of the Internet</title>
       </Head>
-      <main>
 
-      </main>
+      <main>Hello world from Next!</main>
     </>
-  );
+  )
 }
+

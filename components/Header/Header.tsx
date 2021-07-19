@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { Center } from "../Center";
-import { Container, Logo } from "./style";
+import Link from "next/link"
+import { Center } from "../Center"
+import { Container, Logo } from "./style"
 
 export const Header = () => {
   return (
@@ -8,10 +8,10 @@ export const Header = () => {
       <Center>
         <Logo>
           <Link href="/">
-            <a>What`s Next?</a>
+            <a>What's Next?!</a>
           </Link>
         </Logo>
       </Center>
     </Container>
-  );
-};
+  )
+}
