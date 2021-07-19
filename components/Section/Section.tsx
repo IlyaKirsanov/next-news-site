@@ -1,18 +1,19 @@
-import { Post } from "../Post";
+import { Post, Post as PostType } from "../Post";
 import { Grid, Title } from "./style";
 
 type SectionProps = {
   title: string;
+  posts: PostType[];
 };
 
-export const Section = ({ title }: SectionProps) => {
+export const Section = ({ title, posts }: SectionProps) => {
   return (
     <section>
       <Title>{title}</Title>
       <Grid>
-        <Post />
-        <Post />
-        <Post />
+        {posts.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
       </Grid>
     </section>
   );
