@@ -14,7 +14,7 @@ export const theme = {
 
 export type MainThemeProps = ThemeProps<typeof theme>;
 export const GlobalStyle = createGlobalStyle<MainThemeProps>`
-	
+
 	body {
 	margin: 0;
 	font-family: ${({ theme }) => theme.fonts.basic};
@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle<MainThemeProps>`
 	h1, h2, h3, h4, h5, h6 { margin: 0; }
 	a { color: ${({ theme }) => theme.colors.blue} }
 	a:hover { color: ${({ theme }) => theme.colors.pink} }
-	
+
 	.main {
 	padding: 70px 0 20px;
 	min-height: calc(100vh - 50px);
