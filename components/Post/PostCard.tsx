@@ -1,4 +1,4 @@
-import { Card, Title, Figure, Content, Lead } from "./style";
+import { Card, Title, Figure, Lead } from "./PostCardStyle";
 import Link from "next/link";
 import { Post as PostType } from "../../shared/types";
 
