@@ -5,7 +5,6 @@ import { config } from "./config";
 export async function fetchPosts(categoryId: EntityId): Promise<Post[]> {
   const url = `${config.baseUrl}/categories/${categoryId}`;
   const res = await fetch(url);
-	console.log(res, url);
-  return await res.json();
-
+  const data = await res.json();
+  return data;
 }
