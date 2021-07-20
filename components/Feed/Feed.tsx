@@ -18,6 +18,7 @@ export const Feed = ({ posts, categories }: FeedProps) => {
             key={currentCategory}
             title={currentCategory}
             posts={inSection}
+						isCompact
           />
         );
       })}
