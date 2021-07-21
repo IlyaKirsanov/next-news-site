@@ -63,7 +63,7 @@ app.post("/posts/:id/comments", (req, res) => {
   console.log(`==========================================`);
   console.log(`POST NEW COMMENT FROM SERVER ${req.body}`);
   console.log(`==========================================`);
-  return res.sendStatus(201);
+  return res.json(comments.filter(({ post }) => post === postId));
 });
 
 app.listen(port, () => {

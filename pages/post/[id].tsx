@@ -1,30 +1,35 @@
-import { GetServerSideProps } from "next"
-import { useRouter } from "next/router"
-import { fetchPost } from "../../api/post"
-import { fetchComments } from "../../api/comments"
-import { Post as PostType, Comment } from "../../shared/types"
+import React from "react"
+import { NextPage } from "next"
+import { useSelector } from "react-redux"
 import { Loader } from "../../components/Loader"
 import { PostBody } from "../../components/Post/PostBody"
 import { Comments } from "../../components/Comments"
 
-type PostProps = {
-	post: PostType
-	comments: Comment[]
-}
+import { fetchPost } from "../../api/post"
+import { fetchComments } from "../../api/comments"
+import { State, store } from "../../store"
+import { UPDATE_POST_ACTION } from "../../store/post"
+import { UPDATE_COMMENTS_ACTION } from "../../store/comments"
 
-export const getServerSideProps: GetServerSideProps<PostProps> = async ({
-	params
-}) => {
-	if (typeof params.id !== "string") throw new Error("Unexpected id")
-	const post = await fetchPost(params.id)
-	const comments = await fetchComments(params.id)
+export const getServerSideProps = store.getServerSideProps(
+	async ({ store, params }) => {
+		if (typeof params.id !== "string")
+			throw new Error("Unexpected id")
 
-	return { props: { post, comments } }
-}
+		const comments = await fetchComments(params.id)
+		const post = await fetchPost(params.id)
 
-const Post = ({ post, comments }: PostProps) => {
-	const router = useRouter()
-	if (router.isFallback) return <Loader />
+		store.dispatch({ type: UPDATE_POST_ACTION, post })
+		store.dispatch({ type: UPDATE_COMMENTS_ACTION, comments })
+	}
+)
+
+const Post: NextPage = () => {
+	const { post, comments } = useSelector<State, State>(
+		(state) => state
+	)
+
+	if (!post) return <Loader />
 	return (
 		<>
 			<PostBody post={post} />
