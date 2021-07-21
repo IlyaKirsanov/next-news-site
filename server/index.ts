@@ -42,11 +42,28 @@ app.get("/categories/:id", (req, res) => {
 
 app.get("/comments/:post", (req, res) => {
   const postId = Number(req.params.post);
-  const foundComments = comments.filter((comment) => comment.post === postId);
+  const found = comments.filter((comment) => {
+		console.log(comment.id === postId);
+		return comment.post === postId});
   console.log(`==========================================`);
-  console.log(`GET COMMENTS FOR POST ${postId}`);
+  console.log(`GET COMMENTS FOR POST ${postId} ${JSON.stringify(found)}`);
   console.log(`==========================================`);
-  return res.json(foundComments);
+  return res.json(found);
+});
+
+app.post("/posts/:id/comments", (req, res) => {
+  const postId = Number(req.params.id);
+  comments.push({
+    id: comments.length + 1,
+    author: req.body.name,
+    content: req.body.comment,
+    post: postId,
+    time: "Less than a minute ago",
+  });
+  console.log(`==========================================`);
+  console.log(`POST NEW COMMENT FROM SERVER ${req.body}`);
+  console.log(`==========================================`);
+  return res.sendStatus(201);
 });
 
 app.listen(port, () => {
